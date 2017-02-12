@@ -1,0 +1,57 @@
+
+    /*
+      Class LibraryBook models information common for library books. In addition to author, title, and ISBN, library books have call numbers, and library books are stored on the shelves in order by call number. Further, many library books may be able to circulate. In addition to fields and methods of books, any library book has
+      String callNumber
+      constructors and methods
+      a constructor using 4 parameters for an author, title, ISBN number, and call number
+      getters and setters
+      abstract void checkout(String patron, String due)
+      abstract void returned()
+      abstract String circulationStatus()
+      compareTo allows comparison/ordering of library books by callNumber, following the format of Java's Comparable interface
+      toString from Book is augmented with a circulation status and call number
+    */
+
+abstract class LibraryBook extends Book implements Comparable<LibraryBook>{
+    private String callNumber;
+    
+    public LibraryBook(){
+	super();
+	setcallNumber("007");
+    }
+
+    public CirculatingBook(String by, String name, String isbn, String call){
+	super(by, name, isbn);
+	setcallNumber(call);
+    }
+    
+
+    public void setcallNumber(String num){
+	callNumber = num;
+    }
+    public String getcallNumber(){
+	return callNumber;
+    }
+    
+    abstract void checkout(String patron, String due);
+    abstract void returned();
+    abstract String circulationStatus();
+
+    public int compareTo(LibraryBook booky){
+	if (booky.getcallNumber().compareTo(this.getcallNumber()) > 0){
+	    return 1;
+	}
+	else if (booky.getcallNumber().compareTo(this.getcallNumber()) == 0){
+	    return 0;
+	}
+	else if (booky.getcallNumber().compareTo(this.getcallNumber()) < 0){
+	    return -1;
+	}
+    }
+
+    public String toString(){
+	return super.toString() + " with call number " + this.getcallNumber();
+    }
+
+
+}

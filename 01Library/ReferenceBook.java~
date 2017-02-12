@@ -1,0 +1,45 @@
+/*
+Reference books are housed in a specific collection (e.g., the Iowa Room, Burling, or Science), and reference books do not circulate.
+
+In addition to fields and methods of library books, a reference book has
+
+    fields
+        String collection
+    constructors and methods
+        a constructor using 5 parameters for an author, title, ISBN number, call number, and collection
+        getters and setters
+        void checkout is not allowed for reference books, so the method should print that the patron "cannot check out a reference book".  (This should have been designed as an exception.)
+        void returned is not allowed, and should print "reference book could not have been checked out -- return impossible". (This should have been designed as an exception.)
+        String circulationStatus should return "non-circulating reference book".
+        String toString from LibraryBook should be augmented with the collection information
+
+With checkout, returned, and circulationStatus implemented for LibraryBook, this is a fully-implemented class.
+*/
+
+public class ReferenceBook extends LibraryBook{
+    private String collection;
+    public ReferenceBook(){
+        super();
+    setCollection("the collection");
+    }
+    public void setCollection(String collect){
+    collection = collect;
+    }
+    public String getCollection(){
+    return collection;
+    }
+
+    public String toString(){
+	return super()+" in the collection "+getCollection();
+    }
+
+    public void checkout(String patron, String due){
+	System.out.println(parton+" cannot check out a reference book");
+    }
+    public void returned(){
+	System.out.println("reference book could not have been checked out -- return impossible");
+    }
+    public void circulationStatus(){
+	System.out.println("non-circulating reference book");
+    }
+}

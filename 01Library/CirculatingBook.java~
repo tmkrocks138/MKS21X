@@ -1,0 +1,83 @@
+/*
+  Class CirculatingBook extends LibraryBook
+  CirculatingBook models books that can circulate. When checked out, information is stored about the patron who borrowed the book and when it is due. In addition to fields and methods of library books, a circulating book has:
+
+  fields
+  currentHolder (patron, if any, who checked out the book)
+  dueDate (when book should be returned)
+  constructors and methods
+  a constructor using 4 parameters for an author, title, ISBN number, and call number. When constructed, currentHolder and dueDate should be null.
+  getters and setters
+  void checkout handles processing when a book is checked out, storing the patron's name and the date the book is due in the fields.
+  void returned handles process when a book is returned (currentHolder and dueDate are set to null).
+  String circulationStatus should return the currentHolder's name and due date, if the book has been checked out; or "book available on shelves" if the book is available.
+  String toString from LibraryBook should be augmented with current holder and due date, if applicable.
+*/
+
+public class CirculatingBook extends LibraryBook{
+    private String currentHolder;
+    private String dueDate;
+
+    public CirculatingBook(){
+	super();
+	setdueDate("null");
+	setHolder("null");
+	
+    }
+    public CirculatingBook(String by, String name, String isbn, String call){
+	super(by, name, isbn, call);
+	setdueDate("null");
+	setHolder("null");
+    }
+
+    public CirculatingBook(String by, String name, String isbn, String call, String hold, String due){
+	super( by, name, isbn, call);
+	setdueDate(due);
+	setHolder(hold);
+    }
+
+    public void setHolder(String hold){
+	currentHolder = hold;
+    }
+    public String getHolder(){
+	return currentHolder;
+    }
+    public void setdueDate(String due){
+	dueDate = due;
+    }
+    public String getdueDate(){
+	return dueDate;
+    }
+
+    public String toString(){
+	if(this.getHolder()=="null"){
+	    return super.toString();
+	}
+	else{
+	    return super.toString() + "Current Holder:" + this.getHolder() + "  Due:"+this.getdueDate;
+	}
+    }
+
+    public void checkout(String patron, String due){
+	if(this.getHolder()=="null"){
+	    setdueDate(due);
+	    setHolder(patron);
+	}
+	else{
+	    System.out.println("This book is checked out by "+this.getHolder());
+	}
+    }
+    public void returned(){
+	setdueDate("null");
+	setHolder("null");
+    }
+    public String circulationStatus(){
+	if(this.getHolder()=="null"){
+	    return "book available on shelves";
+	}
+	else{
+	    return "This book is in "+this.getHolder()+"'s possession"
+	}
+    }
+    
+}
